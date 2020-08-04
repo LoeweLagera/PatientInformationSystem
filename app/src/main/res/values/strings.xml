@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PatientInformationSystem</string>
+    <string name="patient_information_system">Patient Information System</string>
+    <string name="home">Home</string>
+    <string name="add_patient">Add Patient</string>
+    <string name="prescriptions">Prescriptions</string>
+    <string name="laboratory_results">Laboratory Results</string>
+    <string name="patients">Patients</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/firstFragment"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/secondFragment"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/patients" />
+    <item
+        android:id="@+id/thirdFragment"
+        android:icon="@drawable/ic_baseline_person_add_24"
+        android:title="@string/add_patient" />
+    <item
+        android:id="@+id/fourthFragment4"
+        android:icon="@drawable/ic_baseline_insert_drive_file_24"
+        android:title="@string/laboratory_results" />
+    <item
+        android:id="@+id/fifthFragment"
+        android:icon="@drawable/ic_baseline_ballot_24"
+        android:title="@string/prescriptions" />
+</menu>
