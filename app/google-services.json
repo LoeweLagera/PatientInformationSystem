@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1038549063826",
+    "firebase_url": "https://patientinformationsystem-4aa83.firebaseio.com",
+    "project_id": "patientinformationsystem-4aa83",
+    "storage_bucket": "patientinformationsystem-4aa83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038549063826:android:877cbb0351842422882e4b",
+        "android_client_info": {
+          "package_name": "com.theblockph.patientinformationsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038549063826-h5m9bf4hl607q42f2kt6qgmjhsg43j1a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theblockph.patientinformationsystem",
+            "certificate_hash": "e0e8bf36f57f17ce2a42afd06a4103cb89aff49c"
+          }
+        },
+        {
+          "client_id": "1038549063826-9hvh24bga644p0ur1jbjh4u2h9nahsou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVXWRH4c7MGgl8RZXFfAMpPLvrNtm1rg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038549063826-9hvh24bga644p0ur1jbjh4u2h9nahsou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
