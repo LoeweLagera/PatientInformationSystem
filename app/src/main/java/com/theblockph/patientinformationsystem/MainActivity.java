@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Logged In Succesfully.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), HomeFragment.class));
+                            Toast.makeText(MainActivity.this, "Logged In Successfully.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Home_Activity.class));
                         }
                     }
                 });
