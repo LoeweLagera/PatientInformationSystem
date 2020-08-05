@@ -42,11 +42,11 @@ public class RegistrationForm extends AppCompatActivity {
 
         RegisterBtn = findViewById(R.id.btnRegister);
 
-        fAuth = FirebaseAuth.getInstance();
+        /*fAuth = FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser()!= null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
-        }
+        } */
 
         RegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
