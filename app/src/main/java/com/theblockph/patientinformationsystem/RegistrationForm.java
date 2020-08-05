@@ -57,13 +57,6 @@ public class RegistrationForm extends AppCompatActivity {
                 String password = setPassword.getText().toString().trim();
                 String confirmPassword = setConfirmPassword.getText().toString().trim();
 
-                if (TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(email) && TextUtils.isEmpty(password) && TextUtils.isEmpty(confirmPassword)){
-                    setFirstName.setError("First Name Required");
-                    setLastName.setError("Last Name Required");
-                    setEmail.setError("Email Required");
-                    setPassword.setError("Password Required");
-                    setConfirmPassword.setError("Confirm Password Required");
-                }
                 if (TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)){
                     setFirstName.setError("First Name Required");
                     setLastName.setError("Last Name Required");
