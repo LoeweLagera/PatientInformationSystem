@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent signUpIntent  = new Intent(MainActivity.this,RegistrationForm.class);
+                Intent signUpIntent  = new Intent(getApplicationContext(),RegistrationForm.class);
                 startActivity(signUpIntent);
             }
         });
