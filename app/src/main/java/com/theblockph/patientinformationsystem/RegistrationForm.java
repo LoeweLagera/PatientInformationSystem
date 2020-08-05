@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
+import java.util.Objects;
+
 public class RegistrationForm extends AppCompatActivity {
 
     EditText setFirstName, setLastName, setEmail, setPassword, setConfirmPassword;
@@ -81,7 +83,7 @@ public class RegistrationForm extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(RegistrationForm.this, "User Created",Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(RegistrationForm.this, "Error" +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistrationForm.this, "Error" + Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
