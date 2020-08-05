@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     EditText getEmail, getPassword;
     Button btnLogin;
 
+    Button btnSignUp;
+
     FirebaseAuth fAuth;
 
     @Override
@@ -34,17 +36,14 @@ public class MainActivity extends AppCompatActivity {
         getEmail = findViewById(R.id.editTextEmailLogin);
         getPassword = findViewById(R.id.editTextPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
-
         fAuth = FirebaseAuth.getInstance();
 
 
         // SignUp
-        final Button buttonSignUp = findViewById(R.id.btnsignup);
-
-        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+        btnSignUp = findViewById(R.id.btnsignup);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent signUpIntent  = new Intent(getApplicationContext(),RegistrationForm.class);
                 startActivity(signUpIntent);
             }
