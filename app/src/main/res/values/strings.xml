@@ -8,4 +8,11 @@
     <string name="patients">Patients</string>
     <!-- TODO: Remove or change this placeholder text -->
 
+
+    <string-array name="numbers">
+        <item>Single</item>
+        <item>Married</item>
+        <item>Widowed</item>
+        <item>Separate</item>
+    </string-array>
 </resources>
