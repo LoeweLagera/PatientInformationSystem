@@ -42,15 +42,16 @@ public class RegistrationForm extends AppCompatActivity {
 
         RegisterBtn = findViewById(R.id.btnRegister);
 
-        /*fAuth = FirebaseAuth.getInstance();
+        fAuth = FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser()!= null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
-        } */
+        }
 
         RegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String firstName = setFirstName.getText().toString().trim();
                 String lastName = setLastName.getText().toString().trim();
                 String email = setEmail.getText().toString().trim();
@@ -76,6 +77,7 @@ public class RegistrationForm extends AppCompatActivity {
 
                 //Firebase Authentication
                 //CreateUserWithEmailAndPassword used to send the Details in Firebase Cloud "ONLY IN THE AUTHENTICATION TAB"
+
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
