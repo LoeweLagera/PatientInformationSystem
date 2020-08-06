@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
                 String email = getEmail.getText().toString().trim();
                 String password = getPassword.getText().toString().trim();
+
+                if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+                    getEmail.setError("Email Required");
+                    getPassword.setError("Password Required");
+                    return;
+                }
 
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

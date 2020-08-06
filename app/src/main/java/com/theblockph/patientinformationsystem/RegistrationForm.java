@@ -64,15 +64,18 @@ public class RegistrationForm extends AppCompatActivity {
                     setEmail.setError("Email Required");
                     setPassword.setError("Password Required");
                     setConfirmPassword.setError("Confirm Password Required");
+                    return;
                 }
                 if (password.length()<6){
                     setPassword.setError("Password Too Short");
+                    return;
 
                     //Toast.makeText(RegistrationForm.this, "Password Too Short",Toast.LENGTH_SHORT).show(); !THIS ONE IS A CODE
                 }
                 if(!password.equals(confirmPassword)){
                     setPassword.setError("Password Don't Match");
                     setConfirmPassword.setError("Password Don't Match");
+                    return;
                 }
 
                 //Firebase Authentication
