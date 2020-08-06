@@ -10,8 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home_Activity"></activity>
-        <activity android:name=".RegistrationForm" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Frag_Prescriptions"/>
+        <activity android:name=".Frag_LaboratoryResults" />
+        <activity android:name=".Frag_AddPatients" />
+        <activity android:name=".Frag_Patients" />
+        <activity android:name=".Frag_Dashboard" />
+        <activity android:name=".RegistrationForm" />
+
+
     </application>
 
 </manifest>

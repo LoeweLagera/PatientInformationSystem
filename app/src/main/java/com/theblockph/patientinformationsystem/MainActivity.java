@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this, "Logged In Successfully.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Home_Activity.class));
+                            startActivity(new Intent(getApplicationContext(), Frag_Dashboard.class));
                         }
                     }
                 });
