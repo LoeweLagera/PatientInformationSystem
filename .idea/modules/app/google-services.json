@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1038549063826-0vb3k0jfgl8ak9vg0eudncjjgqcsoq19.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theblockph.patientinformationsystem",
+            "certificate_hash": "58e5518bb85cc55042f054b98f7ca96c48684a71"
+          }
+        },
+        {
           "client_id": "1038549063826-h5m9bf4hl607q42f2kt6qgmjhsg43j1a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
