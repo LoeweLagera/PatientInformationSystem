@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTxtFirstName" />
 
     <EditText
-        android:id="@+id/editTxtEmail"
+        android:id="@+id/editTxtEmailRegister"
         android:layout_width="334dp"
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
@@ -58,20 +58,20 @@
         app:layout_constraintTop_toBottomOf="@+id/editTxtLastName" />
 
     <EditText
-        android:id="@+id/editTxtPassword"
+        android:id="@+id/editTxtPasswordRegister"
         android:layout_width="334dp"
         android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTxtEmail"
+        app:layout_constraintEnd_toEndOf="@+id/editTxtEmailRegister"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editTxtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtEmail" />
+        app:layout_constraintStart_toStartOf="@+id/editTxtEmailRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtEmailRegister" />
 
     <EditText
-        android:id="@+id/editTxtConfirmPassword"
+        android:id="@+id/editTxtConfirmPasswordRegister"
         android:layout_width="334dp"
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
@@ -80,10 +80,10 @@
         android:hint="Confirm Password "
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTxtPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editTxtPasswordRegister"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTxtPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtPassword" />
+        app:layout_constraintStart_toStartOf="@+id/editTxtPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtPasswordRegister" />
 
     <TextView
         android:id="@+id/textView7"
