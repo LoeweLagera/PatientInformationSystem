@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     //Login
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getEmail = findViewById(R.id.editTextEmailLogin);
-        getPassword = findViewById(R.id.editTextPasswordLogin);
+        getPassword = findViewById(R.id.editTxtPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
         fAuth = FirebaseAuth.getInstance();
 
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this, "Logged In Successfully.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), Frag_Dashboard.class));
+                        } else {
+                            Toast.makeText(MainActivity.this, "Wrong Email or Password" + Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

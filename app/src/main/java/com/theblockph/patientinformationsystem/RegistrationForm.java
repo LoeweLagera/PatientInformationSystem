@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,8 @@ public class RegistrationForm extends AppCompatActivity {
 
     EditText setFirstName, setLastName, setEmail, setPassword, setConfirmPassword;
     Button RegisterBtn;
+
+    TextView goBack;
 
     FirebaseAuth fAuth;
 
@@ -37,6 +40,7 @@ public class RegistrationForm extends AppCompatActivity {
         setConfirmPassword = findViewById(R.id.editTxtConfirmPasswordRegister);
 
         RegisterBtn = findViewById(R.id.btnRegister);
+        goBack = findViewById(R.id.tvBackRegister);
 
         fAuth = FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser()!= null){
@@ -83,6 +87,7 @@ public class RegistrationForm extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             Toast.makeText(RegistrationForm.this, "User Created",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Frag_Dashboard.class));
                         } else {
                             Toast.makeText(RegistrationForm.this, "Error" + Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
                         }
@@ -91,6 +96,15 @@ public class RegistrationForm extends AppCompatActivity {
 
             }
         });
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backToLoginPage = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(backToLoginPage);
+            }
+        });
+
 
     }
 }
