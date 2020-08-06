@@ -24,11 +24,14 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frag__add_patients);
 
+        //Spinner for Marital Status
         Spinner spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.numbers, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        //spinner for Religion
 
         //Initialize and Assign Value
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -68,6 +71,10 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                 return false;
             }
         });
+
+        //=============================INSERT DATA TO DATABASE==================================
+
+
     }
 
     @Override
@@ -80,4 +87,5 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }
