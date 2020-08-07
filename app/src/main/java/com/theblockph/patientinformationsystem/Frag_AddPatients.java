@@ -17,8 +17,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Frag_AddPatients extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -27,6 +30,9 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
     Spinner reg_gender, reg_marital;
     EditText reg_address, reg_religion, reg_occupation;
     EditText reg_age, reg_contact1, reg_contact2, reg_email;
+
+    //Patient_ID
+    long maxid=0;
 
     Button btn_register;
     Table_Patient table_patient;
@@ -74,6 +80,19 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
         //                      -----Firebase_Reference-----
         reff= FirebaseDatabase.getInstance().getReference().child("Patients");
 
+        reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                    maxid=(int)dataSnapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         //OnClickListener
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +119,8 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                 table_patient.setOccupation(reg_occupation.getText().toString().trim());
                 table_patient.setEmail(reg_email.getText().toString().trim());
 
+                reff.child(String.valueOf(maxid++)).setValue(table_patient);
 
-                reff.push().setValue(table_patient);
 
                 //redirect to Patients Tab
                 startActivity(new Intent(getApplicationContext()
