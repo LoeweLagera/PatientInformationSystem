@@ -7,22 +7,76 @@
     tools:context=".Frag_Patients"
     android:focusableInTouchMode="true">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ListView"
-
-        ></ListView>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_navigation"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
         app:itemBackground="@color/colorPrimary"
-        app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
-        app:menu="@menu/menu_navigation"
-        android:layout_alignParentBottom="true"/>
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_navigation" />
 
+    <TextView
+        android:id="@+id/tvPatientInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Patient Information"
+        android:layout_centerHorizontal="true"/>
+
+
+    <EditText
+        android:id="@+id/etFirstNamePI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="First Name"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/tvPatientInformation"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/etMiddleNamePI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Middle Name"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/etFirstNamePI"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/etLastNamePI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Last Name"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/etMiddleNamePI"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:id="@+id/btnSearchPI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_below="@+id/etSearchPatientsPI"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/etSearchPatientsPI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etLastNamePI"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Search Patient"
+        android:inputType="textPersonName" />
 </RelativeLayout>
+

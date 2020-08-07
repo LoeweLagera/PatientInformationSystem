@@ -16,14 +16,14 @@ public class Frag_Patients extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frag__patients);
 
-        //=================================BOTTOM NAVIGATION BAR===================================
+
 
         //Initialize and Assign Value
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         //Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.patients);
 
+        //=================================BOTTOM NAVIGATION BAR===================================
         //perform SelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
