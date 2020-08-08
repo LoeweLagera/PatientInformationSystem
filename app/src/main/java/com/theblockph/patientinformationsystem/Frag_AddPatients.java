@@ -54,6 +54,7 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
     private Uri mImageUri = null;
 
     private StorageReference mStorage;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,8 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
 
         //Storage Reference
         mStorage = FirebaseStorage.getInstance().getReference();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Patients");
 
         //=============================INSERT DATA TO DATABASE==================================
 
@@ -122,49 +125,88 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                 int age=Integer.parseInt(reg_age.getText().toString().trim());
                 Long cellphone=Long.parseLong(reg_contact1.getText().toString().trim());
                 Long telephone=Long.parseLong(reg_contact2.getText().toString().trim());
+
                 // For integers and LONG convert to string first ^^^ CHECK METHOD HERE ^^^
 
-                table_patient.setFname(reg_patientfname.getText().toString().trim());
-                table_patient.setMname(reg_patientmname.getText().toString().trim());
-                table_patient.setLname(reg_patientlname.getText().toString().trim());
+                // =====================================================================
+                // ========================DO NOT DELETE================================
+                // =====================================================================
+                //table_patient.setFname(reg_patientfname.getText().toString().trim());
+                //table_patient.setMname(reg_patientmname.getText().toString().trim());
+                //table_patient.setLname(reg_patientlname.getText().toString().trim());
 
-                table_patient.setGender(reg_gender.getSelectedItem().toString().trim());
-                table_patient.setMarital(reg_marital.getSelectedItem().toString().trim());
+                //table_patient.setGender(reg_gender.getSelectedItem().toString().trim());
+                //table_patient.setMarital(reg_marital.getSelectedItem().toString().trim());
 
-                table_patient.setAddress(reg_address.getText().toString().trim());
-                table_patient.setReligion(reg_religion.getText().toString().trim());
+                //table_patient.setAddress(reg_address.getText().toString().trim());
+                //table_patient.setReligion(reg_religion.getText().toString().trim());
 
-                table_patient.setAge(age);
-                table_patient.setCellphone(cellphone);
-                table_patient.setTelephone(telephone);
+                //table_patient.setAge(age);
+                //table_patient.setCellphone(cellphone);
+                //table_patient.setTelephone(telephone);
 
-                table_patient.setOccupation(reg_occupation.getText().toString().trim());
-                table_patient.setEmail(reg_email.getText().toString().trim());
+                //table_patient.setOccupation(reg_occupation.getText().toString().trim());
+                //table_patient.setEmail(reg_email.getText().toString().trim());
 
-                //image upload to firebase code
+                //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                // =====================================================================
+                // ========================DO NOT DELETE================================
+                // =====================================================================
 
-                            //Concat Patient's First & Last Name to string for filename
                 String fname=reg_patientfname.getText().toString().trim();
                 String lname=reg_patientlname.getText().toString().trim();
+                final String pname = lname + fname;
 
-                String pname= lname + fname;
-
-                            //firebase/PatientsPicture/[LAST NAME]+[FIRST NAME]/[FILE NAME]
-
+                //image upload to firebase code
+                //firebase/PatientsPicture/[LAST NAME]+[FIRST NAME]/[FILE NAME]
                 StorageReference filePath = mStorage.child("Patients Picture").child(pname).child(mImageUri.getLastPathSegment());
 
                 filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
+                        Task<Uri>downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                        DatabaseReference newPatient = mDatabase.push();
+
+                        //NAME
+                        String fname=reg_patientfname.getText().toString().trim();
+                        String mname=reg_patientmname.getText().toString().trim();
+                        String lname=reg_patientlname.getText().toString().trim();
+
+                        //PATIENT'S INFORMATION
+                        String gender=reg_gender.getSelectedItem().toString().trim();
+                        String marital=reg_marital.getSelectedItem().toString().trim();
+                        String address=reg_address.getText().toString().trim();
+                        String religion=reg_religion.getText().toString().trim();
+                        String age=reg_age.getText().toString().trim();
+                        String cellphone=reg_contact1.getText().toString().trim();
+                        String telephone=reg_contact2.getText().toString().trim();
+                        String occupation=reg_occupation.getText().toString().trim();
+                        String email=reg_email.getText().toString().trim();
+
+                        //NAME INSERT
+                        newPatient.child("avatar").setValue(downloadUrl.toString());
+                        newPatient.child("first_name").setValue(fname);
+                        newPatient.child("middle_name").setValue(mname);
+                        newPatient.child("last_name").setValue(lname);
+
+                        //PATIENT'S INFORMATION INSERT
+                        newPatient.child("gender").setValue(gender);
+                        newPatient.child("marital_status").setValue(marital);
+                        newPatient.child("address").setValue(address);
+                        newPatient.child("religion").setValue(religion);
+                        newPatient.child("age").setValue(age);
+                        newPatient.child("cellphone").setValue(cellphone);
+                        newPatient.child("telephone").setValue(telephone);
+                        newPatient.child("occupation").setValue(occupation);
+                        newPatient.child("email").setValue(email);
 
                     }
                 });
 
                 reff.child(String.valueOf(maxid++)).setValue(table_patient);
 
-                //redirect to Patients Tab
+                //Redirect to Patients Tab
                 startActivity(new Intent(getApplicationContext()
                         , Frag_Patients.class));
                 overridePendingTransition(0, 0);
@@ -229,7 +271,6 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
         });
 
         //Image Select
-
 
         mSelectImage = (ImageButton) findViewById(R.id.patient_avatarselect);
 
