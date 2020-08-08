@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.theblockph.patientinformationsystem">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -12,7 +14,7 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name=".Frag_AddPatients">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +24,7 @@
 
         <activity android:name=".Frag_Prescriptions"/>
         <activity android:name=".Frag_LaboratoryResults" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Frag_AddPatients" />
         <activity android:name=".Frag_Patients" />
         <activity android:name=".Frag_Dashboard" />
         <activity android:name=".RegistrationForm" />

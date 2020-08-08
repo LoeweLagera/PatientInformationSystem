@@ -4,24 +4,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class Frag_AddPatients extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -38,14 +47,23 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
     Table_Patient table_patient;
     DatabaseReference reff;
 
+    //IMAGE SELECT
+    private ImageButton mSelectImage;
+    private static final int GALLERY_REQUEST = 1;
+
+    private Uri mImageUri = null;
+
+    private StorageReference mStorage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frag__add_patients);
 
-        //=============================INSERT DATA TO DATABASE==================================
+        //Storage Reference
+        mStorage = FirebaseStorage.getInstance().getReference();
 
-        //Insert Data to Firebase - name: Connect1
+        //=============================INSERT DATA TO DATABASE==================================
 
         //                      -----name_of_Activity------
         setContentView(R.layout.activity_frag__add_patients);
@@ -70,6 +88,9 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
         reg_contact1=(EditText) findViewById(R.id.reg_contact1);
         reg_contact2=(EditText) findViewById(R.id.reg_contact2);
         reg_email=(EditText) findViewById(R.id.reg_email);
+
+        //             ---insert image to database---
+        mSelectImage = (ImageButton) findViewById(R.id.patient_avatarselect);
 
         //                -----Button_to_insert_data_to_Firebase-----
         btn_register=(Button) findViewById(R.id.btn_register);
@@ -106,6 +127,7 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                 table_patient.setFname(reg_patientfname.getText().toString().trim());
                 table_patient.setMname(reg_patientmname.getText().toString().trim());
                 table_patient.setLname(reg_patientlname.getText().toString().trim());
+
                 table_patient.setGender(reg_gender.getSelectedItem().toString().trim());
                 table_patient.setMarital(reg_marital.getSelectedItem().toString().trim());
 
@@ -119,8 +141,24 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                 table_patient.setOccupation(reg_occupation.getText().toString().trim());
                 table_patient.setEmail(reg_email.getText().toString().trim());
 
-                reff.child(String.valueOf(maxid++)).setValue(table_patient);
+                //image upload to firebase code
 
+                            //Convert Patient's Last Name to string for filename
+                String pname=reg_patientfname.getText().toString().trim() ;
+
+                            //firebase/PatientsPicture/[LAST NAME]/[FILE NAME]
+                StorageReference filePath = mStorage.child("Patients Picture").child(pname).child(mImageUri.getLastPathSegment());
+
+                filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
+
+                    }
+                });
+
+                reff.child(String.valueOf(maxid++)).setValue(table_patient);
 
                 //redirect to Patients Tab
                 startActivity(new Intent(getApplicationContext()
@@ -186,6 +224,33 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
             }
         });
 
+        //Image Select
+
+
+        mSelectImage = (ImageButton) findViewById(R.id.patient_avatarselect);
+
+        mSelectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GALLERY_REQUEST);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
+
+            mImageUri = data.getData();
+
+            mSelectImage.setImageURI(mImageUri);
+        }
     }
 
     @Override
@@ -204,4 +269,6 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState, persistentState);
 
     }
+
+
 }

@@ -19,55 +19,66 @@
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/menu_navigation" />
 
+
     <TextView
         android:id="@+id/tvPatientInformation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
         android:text="Patient Information"
-        android:layout_centerHorizontal="true"/>
-
+        android:textColor="#000000"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etFirstNamePI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPatientInformation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/input_outline"
         android:ems="10"
         android:hint="First Name"
         android:inputType="textPersonName"
-        android:layout_below="@+id/tvPatientInformation"
-        android:layout_centerHorizontal="true"
-        />
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/etMiddleNamePI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/etFirstNamePI"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_outline"
         android:ems="10"
         android:hint="Middle Name"
         android:inputType="textPersonName"
-        android:layout_below="@+id/etFirstNamePI"
-        android:layout_centerHorizontal="true"
-        />
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/etLastNamePI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/etMiddleNamePI"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_outline"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
-        android:layout_below="@+id/etMiddleNamePI"
-        android:layout_centerHorizontal="true"
-        />
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/btnSearchPI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
         android:layout_below="@+id/etSearchPatientsPI"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="25dp"
+        android:ems="13"
+        android:text="Search" />
 
     <EditText
         android:id="@+id/etSearchPatientsPI"
@@ -75,8 +86,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etLastNamePI"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/input_outline"
         android:ems="10"
         android:hint="Search Patient"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:padding="10dp" />
 </RelativeLayout>
 
