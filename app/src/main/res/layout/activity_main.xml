@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:padding="10dp"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -57,11 +58,13 @@
         style="@android:style/Widget.Material.EditText"
         android:layout_width="252dp"
         android:layout_height="44dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="240dp"
         android:layout_marginBottom="24dp"
+        android:background="@drawable/input_outline"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/editTxtPasswordLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -101,9 +104,11 @@
         android:layout_height="44dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="25dp"
+        android:background="@drawable/input_outline"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

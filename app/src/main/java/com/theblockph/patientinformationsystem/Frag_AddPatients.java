@@ -143,10 +143,14 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
 
                 //image upload to firebase code
 
-                            //Convert Patient's Last Name to string for filename
-                String pname=reg_patientfname.getText().toString().trim() ;
+                            //Concat Patient's First & Last Name to string for filename
+                String fname=reg_patientfname.getText().toString().trim();
+                String lname=reg_patientlname.getText().toString().trim();
 
-                            //firebase/PatientsPicture/[LAST NAME]/[FILE NAME]
+                String pname= lname + fname;
+
+                            //firebase/PatientsPicture/[LAST NAME]+[FIRST NAME]/[FILE NAME]
+
                 StorageReference filePath = mStorage.child("Patients Picture").child(pname).child(mImageUri.getLastPathSegment());
 
                 filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
