@@ -39,6 +39,7 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
     Spinner reg_gender, reg_marital;
     EditText reg_address, reg_religion, reg_occupation;
     EditText reg_age, reg_contact1, reg_contact2, reg_email;
+    EditText reg_kin_fname, reg_kin_mname, reg_kin_lname, reg_kin_contact1, reg_kin_contact2;
 
     //Patient_ID
     long maxid=0;
@@ -95,6 +96,13 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
         //             ---insert image to database---
         mSelectImage = (ImageButton) findViewById(R.id.patient_avatarselect);
 
+        //                       -----Name_of_TextViews_KIN-----
+        reg_kin_fname=(EditText) findViewById(R.id.reg_kin_fname);
+        reg_kin_mname=(EditText) findViewById(R.id.reg_kin_mname);
+        reg_kin_lname=(EditText) findViewById(R.id.reg_kin_lname);
+        reg_kin_contact1=(EditText) findViewById(R.id.reg_kin_contact1);
+        reg_kin_contact2=(EditText) findViewById(R.id.reg_kin_contact2);
+
         //                -----Button_to_insert_data_to_Firebase-----
         btn_register=(Button) findViewById(R.id.btn_register);
 
@@ -119,6 +127,7 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
 
         //OnClickListener
         btn_register.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
@@ -153,20 +162,17 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                 // ========================DO NOT DELETE================================
                 // =====================================================================
 
-                String fname=reg_patientfname.getText().toString().trim();
-                String lname=reg_patientlname.getText().toString().trim();
-                final String pname = lname + fname;
+                String efname=reg_patientfname.getText().toString().trim();
+                String elname=reg_patientlname.getText().toString().trim();
+                final String pname = elname + ", " +efname;
 
                 //image upload to firebase code
                 //firebase/PatientsPicture/[LAST NAME]+[FIRST NAME]/[FILE NAME]
                 StorageReference filePath = mStorage.child("Patients Picture").child(pname).child(mImageUri.getLastPathSegment());
 
-                filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        Task<Uri>downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
-                        DatabaseReference newPatient = mDatabase.push();
 
                         //NAME
                         String fname=reg_patientfname.getText().toString().trim();
@@ -184,8 +190,17 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                         String occupation=reg_occupation.getText().toString().trim();
                         String email=reg_email.getText().toString().trim();
 
+                        //PATIENT'S KIN INFORMATION
+                        String kin_fname=reg_kin_fname.getText().toString().trim();
+                        String kin_mname=reg_kin_mname.getText().toString().trim();
+                        String kin_lname=reg_kin_lname.getText().toString().trim();
+                        String kin_cellphone=reg_kin_contact1.getText().toString().trim();
+                        String kin_telephone=reg_kin_contact2.getText().toString().trim();
+
+                        DatabaseReference newPatient = mDatabase.push();
+
                         //NAME INSERT
-                        newPatient.child("avatar").setValue(downloadUrl.toString());
+                        //newPatient.child("avatar").setValue(downloadUrl.toString());
                         newPatient.child("first_name").setValue(fname);
                         newPatient.child("middle_name").setValue(mname);
                         newPatient.child("last_name").setValue(lname);
@@ -201,6 +216,13 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                         newPatient.child("occupation").setValue(occupation);
                         newPatient.child("email").setValue(email);
 
+                        //PATIENT'S KIN INFORMATION INSERT
+                        newPatient.child("kin_first_name").setValue(kin_fname);
+                        newPatient.child("kin_middle_name").setValue(kin_mname);
+                        newPatient.child("kin_last_name").setValue(kin_lname);
+                        newPatient.child("kin_cellphone").setValue(kin_cellphone);
+                        newPatient.child("kin_telephone").setValue(kin_telephone);
+
                     }
                 });
 
@@ -214,6 +236,7 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                 Toast.makeText(Frag_AddPatients.this, "Patient Registered!", Toast.LENGTH_LONG).show();
             }
         });
+
 
         //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^END OF INSERT DATA^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

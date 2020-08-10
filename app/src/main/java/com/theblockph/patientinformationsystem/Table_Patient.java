@@ -9,6 +9,9 @@ public class Table_Patient {
     private Long cellphone, telephone;
     private String email;
 
+    private String kin_fname, kin_mname, kin_lname;
+    private Long k_cellphone, k_telephone;
+
 
     public Table_Patient() {
     }
@@ -107,5 +110,45 @@ public class Table_Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getKin_fname() {
+        return kin_fname;
+    }
+
+    public void setKin_fname(String kin_fname) {
+        this.kin_fname = kin_fname;
+    }
+
+    public String getKin_mname() {
+        return kin_mname;
+    }
+
+    public void setKin_mname(String kin_mname) {
+        this.kin_mname = kin_mname;
+    }
+
+    public String getKin_lname() {
+        return kin_lname;
+    }
+
+    public void setKin_lname(String kin_lname) {
+        this.kin_lname = kin_lname;
+    }
+
+    public Long getK_cellphone() {
+        return k_cellphone;
+    }
+
+    public void setK_cellphone(Long k_cellphone) {
+        this.k_cellphone = k_cellphone;
+    }
+
+    public Long getK_telephone() {
+        return k_telephone;
+    }
+
+    public void setK_telephone(Long k_telephone) {
+        this.k_telephone = k_telephone;
     }
 }
