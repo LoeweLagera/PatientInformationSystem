@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent signUpIntent  = new Intent(getApplicationContext(),RegistrationForm.class);
                 startActivity(signUpIntent);
+
             }
         });
 
