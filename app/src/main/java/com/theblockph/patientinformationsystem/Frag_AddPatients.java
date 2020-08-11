@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,7 +44,7 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
     EditText reg_kin_fname, reg_kin_mname, reg_kin_lname, reg_kin_contact1, reg_kin_contact2;
 
     //Patient_ID
-    long maxid=2000;
+    long maxid=0;
 
     Button btn_register;
     Table_Patient table_patient;
@@ -76,7 +77,7 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
 
         //======================DATA TO BE INSERTED TO FIREBASE============================
 
-            //                       -----Name_of_TextViews-----
+        //                       -----Name_of_TextViews-----
         reg_patientfname=(EditText) findViewById(R.id.reg_patientfname);
         reg_patientmname=(EditText) findViewById(R.id.reg_patientmname);
         reg_patientlname=(EditText) findViewById(R.id.reg_patientlname);
@@ -152,99 +153,52 @@ public class Frag_AddPatients extends AppCompatActivity implements AdapterView.O
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
 
-                        int age=Integer.parseInt(reg_age.getText().toString().trim());
-                        Long cellphone=Long.parseLong(reg_contact1.getText().toString().trim());
-                        Long telephone=Long.parseLong(reg_contact2.getText().toString().trim());
-                        Long kcellphone=Long.parseLong(reg_kin_contact1.getText().toString().trim());
-                        Long ktelephone=Long.parseLong(reg_kin_contact2.getText().toString().trim());
+                        downloadUrl.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String photoLink = uri.toString();
 
-                        // For integers and LONG convert to string first ^^^ CHECK METHOD HERE ^^^
+                                int age=Integer.parseInt(reg_age.getText().toString().trim());
+                                Long cellphone=Long.parseLong(reg_contact1.getText().toString().trim());
+                                Long telephone=Long.parseLong(reg_contact2.getText().toString().trim());
+                                Long kcellphone=Long.parseLong(reg_kin_contact1.getText().toString().trim());
+                                Long ktelephone=Long.parseLong(reg_kin_contact2.getText().toString().trim());
 
+                                // For integers and LONG convert to string first ^^^ CHECK METHOD HERE ^^^
 
-                        table_patient.setFname(reg_patientfname.getText().toString().trim());
-                        table_patient.setMname(reg_patientmname.getText().toString().trim());
-                        table_patient.setLname(reg_patientlname.getText().toString().trim());
-                        table_patient.setGender(reg_gender.getSelectedItem().toString().trim());
-                        table_patient.setMarital(reg_marital.getSelectedItem().toString().trim());
-                        table_patient.setAddress(reg_address.getText().toString().trim());
-                        table_patient.setReligion(reg_religion.getText().toString().trim());
-                        table_patient.setAge(age);
-                        table_patient.setCellphone(cellphone);
-                        table_patient.setTelephone(telephone);
+                                table_patient.setImg(photoLink);
+                                table_patient.setFname(reg_patientfname.getText().toString().trim());
+                                table_patient.setMname(reg_patientmname.getText().toString().trim());
+                                table_patient.setLname(reg_patientlname.getText().toString().trim());
+                                table_patient.setGender(reg_gender.getSelectedItem().toString().trim());
+                                table_patient.setMarital(reg_marital.getSelectedItem().toString().trim());
+                                table_patient.setAddress(reg_address.getText().toString().trim());
+                                table_patient.setReligion(reg_religion.getText().toString().trim());
+                                table_patient.setAge(age);
+                                table_patient.setCellphone(cellphone);
+                                table_patient.setTelephone(telephone);
 
-                        table_patient.setOccupation(reg_occupation.getText().toString().trim());
-                        table_patient.setEmail(reg_email.getText().toString().trim());
-                        table_patient.setKin_fname(reg_kin_fname.getText().toString().trim());
-                        table_patient.setKin_mname(reg_kin_mname.getText().toString().trim());
-                        table_patient.setKin_lname(reg_kin_lname.getText().toString().trim());
+                                table_patient.setOccupation(reg_occupation.getText().toString().trim());
+                                table_patient.setEmail(reg_email.getText().toString().trim());
+                                table_patient.setKin_fname(reg_kin_fname.getText().toString().trim());
+                                table_patient.setKin_mname(reg_kin_mname.getText().toString().trim());
+                                table_patient.setKin_lname(reg_kin_lname.getText().toString().trim());
 
-                        table_patient.setK_cellphone(kcellphone);
-                        table_patient.setK_telephone(ktelephone);
+                                table_patient.setK_cellphone(kcellphone);
+                                table_patient.setK_telephone(ktelephone);
 
-                        //DatabaseReference newPatient = mDatabase.push();
+                                reff.child(String.valueOf(maxid++)).setValue(table_patient);
 
-                        reff.child(String.valueOf(maxid++)).setValue(table_patient);
+                                //Redirect to Patients Tab
 
-                        //Redirect to Patients Tab
-                        startActivity(new Intent(getApplicationContext()
-                                , Frag_Patients.class));
-                        overridePendingTransition(0, 0);
+                                startActivity(new Intent(getApplicationContext()
+                                       , Frag_Patients.class));
+                                overridePendingTransition(0, 0);
 
-                        Toast.makeText(Frag_AddPatients.this, "Patient Registered!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Frag_AddPatients.this, "Patient Registered!", Toast.LENGTH_LONG).show();
 
-                        //NAME
-                        //String fname=reg_patientfname.getText().toString().trim();
-                        //String mname=reg_patientmname.getText().toString().trim();
-                        //String lname=reg_patientlname.getText().toString().trim();
-
-                        //PATIENT'S INFORMATION
-                        //String gender=reg_gender.getSelectedItem().toString().trim();
-                        //String marital=reg_marital.getSelectedItem().toString().trim();
-                        //String address=reg_address.getText().toString().trim();
-                        //String religion=reg_religion.getText().toString().trim();
-                        //String age=reg_age.getText().toString().trim();
-                        //String cellphone=reg_contact1.getText().toString().trim();
-                        //String telephone=reg_contact2.getText().toString().trim();
-                        //String occupation=reg_occupation.getText().toString().trim();
-                        //String email=reg_email.getText().toString().trim();
-
-                        //PATIENT'S KIN INFORMATION
-                        //String kin_fname=reg_kin_fname.getText().toString().trim();
-                        //String kin_mname=reg_kin_mname.getText().toString().trim();
-                        //String kin_lname=reg_kin_lname.getText().toString().trim();
-                        //String kin_cellphone=reg_kin_contact1.getText().toString().trim();
-                        //String kin_telephone=reg_kin_contact2.getText().toString().trim();
-
-
-
-                        //NAME INSERT
-                        //newPatient.child("avatar").setValue(downloadUrl.toString());
-                        //newPatient.child("first_name").setValue(fname);
-                        //newPatient.child("middle_name").setValue(mname);
-                        //newPatient.child("last_name").setValue(lname);
-
-                        //PATIENT'S INFORMATION INSERT
-                        //newPatient.child("gender").setValue(gender);
-                        //newPatient.child("marital_status").setValue(marital);
-                        //newPatient.child("address").setValue(address);
-                        //newPatient.child("religion").setValue(religion);
-                        //newPatient.child("age").setValue(age);
-                        //newPatient.child("cellphone").setValue(cellphone);
-                        //newPatient.child("telephone").setValue(telephone);
-                        //newPatient.child("occupation").setValue(occupation);
-                        //newPatient.child("email").setValue(email);
-
-                        //PATIENT'S KIN INFORMATION INSERT
-                        //newPatient.child("kin_first_name").setValue(kin_fname);
-                        //newPatient.child("kin_middle_name").setValue(kin_mname);
-                        //newPatient.child("kin_last_name").setValue(kin_lname);
-                        //newPatient.child("kin_cellphone").setValue(kin_cellphone);
-                        //newPatient.child("kin_telephone").setValue(kin_telephone);
-
-                        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                        // =====================================================================
-                        // ========================DO NOT DELETE================================
-                        // =====================================================================
+                            }
+                        });
 
                     }
                 });

@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name=".Frag_AddPatients">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
 
         <activity android:name=".Frag_Prescriptions"/>
         <activity android:name=".Frag_LaboratoryResults" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Frag_AddPatients" />
         <activity android:name=".Frag_Patients" />
         <activity android:name=".Frag_Dashboard" />
         <activity android:name=".RegistrationForm" />
