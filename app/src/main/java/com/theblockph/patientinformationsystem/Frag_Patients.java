@@ -16,26 +16,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Frag_Patients extends AppCompatActivity {
-    EditText getFirstName, getMiddleName, getLastName, searchPatient;
-    Button btnSearchPatient;
-
-    DatabaseReference dbReff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frag__patients);
-
-
-
-        getFirstName = findViewById(R.id.etFirstNamePI);
-        getMiddleName = findViewById(R.id.etMiddleNamePI);
-        getLastName = findViewById(R.id.etLastNamePI);
-        searchPatient = findViewById(R.id.etSearchPatientsPI);
-        btnSearchPatient = findViewById(R.id.btnSearchPI);
 
         //Initialize and Assign Value
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -76,31 +65,6 @@ public class Frag_Patients extends AppCompatActivity {
         });
 
         //=================================END OF BOTTOM NAVIGATION BAR============================
-
-        btnSearchPatient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dbReff = FirebaseDatabase.getInstance().getReference().child("Patients").child("1");
-                dbReff.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String firstName = snapshot.child("fname").getValue().toString();
-                        String middleName = snapshot.child("mname").getValue().toString();
-                        String lastName = snapshot.child("lname").getValue().toString();
-
-                        getFirstName.setText(firstName);
-                        getMiddleName.setText(middleName);
-                        getLastName.setText(lastName);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
-
 
 
     }
