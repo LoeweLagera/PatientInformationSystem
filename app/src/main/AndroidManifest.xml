@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +27,6 @@
         <activity android:name=".Frag_Patients" />
         <activity android:name=".Frag_Dashboard" />
         <activity android:name=".RegistrationForm" />
-
 
     </application>
 
