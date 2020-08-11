@@ -2,6 +2,8 @@ package com.theblockph.patientinformationsystem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,12 +21,42 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Frag_Patients extends AppCompatActivity {
+
+    private RecyclerView.Adapter adapter;
+
+    private List<ListItem> listItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frag__patients);
+
+        //RecyclerView
+        RecyclerView patientsRecyclerView = findViewById(R.id.patientsRecyclerView);
+        patientsRecyclerView.setHasFixedSize(true);
+        patientsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //All data inside the Recycler View
+        listItems = new ArrayList<>();
+
+        for (int i = 0; i<=10; i++){
+            ListItem listItem = new ListItem(
+                    "Charles" + (i+1),
+                    "0995"
+            );
+            listItems.add(listItem);
+        }
+
+        //Set Adapter to Recycler View
+
+        adapter = new ViewAdapter(listItems, this);
+
+        patientsRecyclerView.setAdapter(adapter);
+
 
         //Initialize and Assign Value
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -65,6 +97,8 @@ public class Frag_Patients extends AppCompatActivity {
         });
 
         //=================================END OF BOTTOM NAVIGATION BAR============================
+
+
 
 
     }
