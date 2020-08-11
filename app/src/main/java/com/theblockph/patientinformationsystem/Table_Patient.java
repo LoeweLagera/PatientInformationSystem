@@ -2,7 +2,7 @@ package com.theblockph.patientinformationsystem;
 
 public class Table_Patient {
 
-    private String fname, mname, lname;
+    private String img, fname, mname, lname;
     private String gender, marital, address;
     private String religion, occupation;
     private Integer age;
@@ -14,6 +14,14 @@ public class Table_Patient {
 
 
     public Table_Patient() {
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getFname() {
