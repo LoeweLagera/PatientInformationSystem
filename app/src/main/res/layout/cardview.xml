@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/cardViewFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name"
@@ -26,9 +27,10 @@
             />
 
         <TextView
+            android:id="@+id/cardViewContactNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/email"
+            android:text="@string/ContactNumber"
             android:textSize="15sp"
             android:textStyle="bold"
             />

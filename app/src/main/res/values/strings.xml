@@ -30,5 +30,5 @@
 
     <!-- Recycler View -->
     <string name="name">Name: </string>
-    <string name="email">Email: </string>
+    <string name="ContactNumber">Contact Number: </string>
 </resources>
