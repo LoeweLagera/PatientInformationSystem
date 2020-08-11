@@ -27,4 +27,8 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <!-- Recycler View -->
+    <string name="name">Name: </string>
+    <string name="email">Email: </string>
 </resources>
